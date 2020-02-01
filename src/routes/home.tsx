@@ -1,15 +1,18 @@
 import React from 'react'
-import { Typography, Grid, Button } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
+import { useTheme } from '@material-ui/styles'
+
 import { getApiVersionAsync } from '../store/app/actions'
 
 const Home: React.FC = () => {
   const dispatch = useDispatch()
+  const theme = useTheme()
+  console.log({ theme })
   return (
-    <Grid>
-      <Typography>Home</Typography>
-      <Button onClick={() => dispatch(getApiVersionAsync.request())}>Get Api Version</Button>
-    </Grid>
+    <div>
+      <span>Home</span>
+      <button onClick={() => dispatch(getApiVersionAsync.request())}>Get Api Version</button>
+    </div>
   )
 }
 

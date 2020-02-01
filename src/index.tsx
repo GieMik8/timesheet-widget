@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import 'flexboxgrid/dist/flexboxgrid.min.css'
+
 import './index.scss'
 import App from './App'
 import * as serviceWorker from './serviceWorker'

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
 
-const About: React.FC = () => <Typography>About</Typography>
+const About: React.FC = () => <span>About</span>
 
 export default About
