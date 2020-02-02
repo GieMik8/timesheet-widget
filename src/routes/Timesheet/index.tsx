@@ -3,7 +3,7 @@ import { useRouteMatch, Switch, Route } from 'react-router-dom'
 
 import Main from './Main'
 
-const Timesheet: React.FC = () => {
+const TimesheetPage: React.FC = () => {
   const match = useRouteMatch()
 
   return (
@@ -18,4 +18,4 @@ const Timesheet: React.FC = () => {
   )
 }
 
-export default Timesheet
+export default TimesheetPage

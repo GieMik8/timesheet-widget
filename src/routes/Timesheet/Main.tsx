@@ -3,6 +3,7 @@ import { useRouteMatch } from 'react-router-dom'
 import { makeStyles, useTheme } from '@material-ui/styles'
 
 import Theme from 'theme'
+import { Timesheet } from 'containers'
 
 const useStyles = makeStyles((theme: typeof Theme) => ({
   wrapper: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
     backgroundColor: theme.colors.white,
     borderRadius: theme.borderRadius,
     width: '400px',
+    height: '600px',
     boxShadow: theme.boxShadow,
   },
 }))
@@ -25,7 +27,7 @@ const Preview: React.FC = () => {
   return (
     <div className={classes.wrapper}>
       <div className={classes.content}>
-        <h2>wrapped</h2>
+        <Timesheet />
       </div>
     </div>
   )
