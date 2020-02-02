@@ -1,25 +1,21 @@
 import React from 'react'
 import { useRouteMatch, Switch, Route } from 'react-router-dom'
 
-import Edit from './Edit'
-import Preview from './Preview'
+import Main from './Main'
 
-const Settings: React.FC = () => {
+const Timesheet: React.FC = () => {
   const match = useRouteMatch()
 
   return (
     <div>
-      <h2>Settings</h2>
+      <h1>Timesheet widget</h1>
       <Switch>
-        <Route path={`${match.path}/edit`}>
-          <Edit />
-        </Route>
         <Route path={match.path}>
-          <Preview />
+          <Main />
         </Route>
       </Switch>
     </div>
   )
 }
 
-export default Settings
+export default Timesheet

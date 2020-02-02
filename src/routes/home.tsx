@@ -7,7 +7,6 @@ import { getApiVersionAsync } from '../store/app/actions'
 const Home: React.FC = () => {
   const dispatch = useDispatch()
   const theme = useTheme()
-  console.log({ theme })
   return (
     <div>
       <span>Home</span>
