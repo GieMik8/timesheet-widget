@@ -1,13 +1,5 @@
-export type ActionSet = {
-  PENDING: string
-  SUCCESS: string
-  ERROR: string
-  actionName: string
-}
+import moment, { Moment } from 'moment'
 
-export const createActionSet = (actionName: string): ActionSet => ({
-  PENDING: `${actionName}_PENDING`,
-  SUCCESS: `${actionName}_SUCCESS`,
-  ERROR: `${actionName}_ERROR`,
-  actionName,
-})
+export function getLast7Days(): Array<Moment> {
+  return [...Array(7).keys()].map((day: number) => moment().subtract(day, 'd')).reverse()
+}

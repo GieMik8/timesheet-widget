@@ -1,5 +1,4 @@
 import React from 'react'
-import { useRouteMatch } from 'react-router-dom'
 import { makeStyles, useTheme } from '@material-ui/styles'
 
 import Theme from 'theme'
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
 
 const Preview: React.FC = () => {
   const theme = useTheme()
-  const match = useRouteMatch()
   const classes = useStyles(theme)
   return (
     <div className={classes.wrapper}>
