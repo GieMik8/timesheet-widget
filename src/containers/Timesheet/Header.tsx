@@ -43,17 +43,28 @@ const Header: React.FC<Props> = ({ days, currentDay, selectedDay }) => {
     [history],
   )
 
+  const onCurrentDateClick = useCallback(
+    () =>
+      history.replace(
+        `${history.location.pathname}?${queryString.stringify({
+          date: currentDay.format('YYYY-MM-DD'),
+        })}`,
+      ),
+    [history, currentDay],
+  )
+
   return (
     <div className={classes.wrapper}>
       <div className={classes.top}>
-        <span className={classes.currentDay}>{currentDay.format('MMM YYYY')}</span>
-        <Icon name="calendar_today" />
+        <span className={classes.currentDay}>{selectedDay.format('MMMM YYYY')}</span>
+        <Icon name="calendar_today" onClick={onCurrentDateClick} />
       </div>
       <div className={classes.body}>
         {days.map(day => (
           <DateCard
-            currentDay={day.isSame(moment(), 'day')}
-            selected={selectedDay.isSame(day, 'day')}
+            isWeekend={[6, 7].includes(day.isoWeekday())}
+            isCurrentDay={day.isSame(moment(), 'day')}
+            isSelected={selectedDay.isSame(day, 'day')}
             onClick={onDateClick}
             key={day.unix()}
             date={day}

@@ -7,8 +7,9 @@ import Theme from 'theme'
 type Props = {
   date: Moment
   onClick?: (date: string) => void
-  selected?: boolean
-  currentDay?: boolean
+  isSelected?: boolean
+  isCurrentDay?: boolean
+  isWeekend?: boolean
 }
 
 const useStyles = makeStyles((theme: typeof Theme) => ({
@@ -23,6 +24,10 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
     '&:hover': {
       backgroundColor: theme.colors.gray1,
       cursor: 'pointer',
+    },
+
+    '&.weekend': {
+      color: theme.colors.gray,
     },
   },
   header: {
@@ -40,11 +45,11 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
     padding: '4px',
     transition: '.2s',
 
-    '&.current-day': {
+    '.current-day &': {
       borderColor: theme.colors.orange,
     },
 
-    '&.selected-day': {
+    '.selected-day &': {
       borderColor: theme.colors.orange,
       backgroundColor: theme.colors.orange,
       color: theme.colors.white,
@@ -53,7 +58,13 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
   footer: {},
 }))
 
-const DateCard: React.FC<Props> = ({ date, onClick, selected = false, currentDay = false }) => {
+const DateCard: React.FC<Props> = ({
+  date,
+  onClick,
+  isSelected = false,
+  isCurrentDay = false,
+  isWeekend = false,
+}) => {
   const classes = useStyles()
   const onDateClick = useCallback(() => {
     if (onClick) {
@@ -61,20 +72,24 @@ const DateCard: React.FC<Props> = ({ date, onClick, selected = false, currentDay
     }
   }, [onClick, date])
 
-  let bodyClasses = classes.body
+  const wrapperClasses = [classes.wrapper]
 
-  if (currentDay) {
-    bodyClasses += ' current-day'
+  if (isCurrentDay) {
+    wrapperClasses.push('current-day')
   }
 
-  if (selected) {
-    bodyClasses += ' selected-day'
+  if (isSelected) {
+    wrapperClasses.push('selected-day')
+  }
+
+  if (isWeekend) {
+    wrapperClasses.push('weekend')
   }
 
   return (
-    <div onClick={onDateClick} className={classes.wrapper}>
+    <div onClick={onDateClick} className={wrapperClasses.join(' ')}>
       <span className={classes.header}>{date.format('ddd')}</span>
-      <span className={bodyClasses}>{date.format('DD')}</span>
+      <span className={classes.body}>{date.format('DD')}</span>
       <span className={classes.footer}>-</span>
     </div>
   )

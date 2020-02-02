@@ -5,14 +5,19 @@ import { RootAction, RootState, Services, isActionOf } from 'typesafe-actions'
 
 import * as Actions from './actions'
 
-export const getEventsEpic: Epic<RootAction, RootAction, RootState, Services> = action$ =>
+export const getEventsEpic: Epic<RootAction, RootAction, RootState, Services> = (
+  action$,
+  state$,
+  { api },
+) =>
   action$.pipe(
     filter(isActionOf(Actions.getEventsAsync.request)),
-    switchMap(() => empty()),
-  )
-
-export const getEventEpic: Epic<RootAction, RootAction, RootState, Services> = action$ =>
-  action$.pipe(
-    filter(isActionOf(Actions.getEventAsync.request)),
-    switchMap(() => empty()),
+    switchMap(() =>
+      api.events.getEvents().pipe(
+        switchMap(res => {
+          console.log({ res })
+          return empty()
+        }),
+      ),
+    ),
   )
