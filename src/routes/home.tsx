@@ -1,12 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useTheme } from '@material-ui/styles'
 
 import { getApiVersionAsync } from '../store/app/actions'
 
 const Home: React.FC = () => {
   const dispatch = useDispatch()
-  const theme = useTheme()
   return (
     <div>
       <span>Home</span>

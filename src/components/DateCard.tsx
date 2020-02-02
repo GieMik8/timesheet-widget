@@ -11,7 +11,7 @@ type Props = {
   currentDay?: boolean
 }
 
-const useStyles = makeStyles<typeof Theme>(theme => ({
+const useStyles = makeStyles((theme: typeof Theme) => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
@@ -38,6 +38,7 @@ const useStyles = makeStyles<typeof Theme>(theme => ({
     borderStyle: 'solid',
     borderRadius: '3px',
     padding: '4px',
+    transition: '.2s',
 
     '&.current-day': {
       borderColor: theme.colors.orange,
