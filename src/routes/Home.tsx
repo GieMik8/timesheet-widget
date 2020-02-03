@@ -8,7 +8,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <span>Home</span>
-      <button onClick={() => dispatch(getApiVersionAsync.request())}>Get Api Version</button>
+      <button onClick={(): any => dispatch(getApiVersionAsync.request())}>Get Api Version</button>
     </div>
   )
 }

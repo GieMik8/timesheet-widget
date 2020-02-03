@@ -5,13 +5,17 @@ import { RootAction, RootState, Services, isActionOf } from 'typesafe-actions'
 
 import { getApiVersionAsync, sayHello } from './actions'
 
-export const sayHelloEpic: Epic<RootAction, RootAction, RootState, Services> = (action$, state$, { api }) =>
+export const sayHelloEpic: Epic<RootAction, RootAction, RootState, Services> = action$ =>
   action$.pipe(
     filter(isActionOf(sayHello)),
     switchMap(() => empty()),
   )
 
-export const getApiVersionEpic: Epic<RootAction, RootAction, RootState, Services> = (action$, state$, { api }) =>
+export const getApiVersionEpic: Epic<RootAction, RootAction, RootState, Services> = (
+  action$,
+  state$,
+  { api },
+) =>
   action$.pipe(
     filter(isActionOf(getApiVersionAsync.request)),
     switchMap(() =>
