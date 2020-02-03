@@ -89,7 +89,7 @@ const DateCard: React.FC<Props> = ({
   return (
     <div onClick={onDateClick} className={wrapperClasses.join(' ')}>
       <span className={classes.header}>{date.format('ddd')}</span>
-      <span className={classes.body}>{date.format('DD')}</span>
+      <span className={classes.body}>{date.format('D')}</span>
       <span className={classes.footer}>-</span>
     </div>
   )

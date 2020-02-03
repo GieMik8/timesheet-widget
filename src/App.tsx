@@ -30,7 +30,7 @@ const App: React.FC = () => {
       <Provider store={store}>
         <Router history={history}>
           <main className={classes.main}>
-            <div className={`${classes.wrapper} container-fluid`}>
+            <div className={classes.wrapper}>
               <Switch>
                 <Route path="/" exact>
                   <Routes.Timesheet />

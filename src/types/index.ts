@@ -1,4 +1,4 @@
-enum EventType {
+export enum EventType {
   Expense = 'expense',
   Hours = 'hours',
   AdditionalHours = 'additionalHours',
