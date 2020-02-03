@@ -1,2 +1,2 @@
-export { default as Home } from './Home1'
+export { default as Home } from './Home'
 export { default as Timesheet } from './Timesheet'
