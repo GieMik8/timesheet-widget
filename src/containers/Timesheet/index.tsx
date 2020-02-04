@@ -5,7 +5,6 @@ import queryString from 'query-string'
 import { makeStyles, useTheme } from '@material-ui/styles'
 import { getLast7Days } from 'utils'
 import { useDispatch } from 'react-redux'
-// import { RootAction } from 'typesafe-actions'
 
 import Theme from 'theme'
 import Actions from 'store/root-action'
@@ -39,20 +38,16 @@ const Timesheet: React.FC<{}> = () => {
 
   const { date } = queryString.parse(location.search)
   const [days] = useState(getLast7Days())
-  const [selectedDay, setSelectedDay] = useState<Moment>(date ? moment(date) : days[6])
   const [currentDay] = useState<Moment>(moment())
-
-  useEffect(() => {
-    const { date } = queryString.parse(location.search)
-    setSelectedDay(date ? moment(date) : moment())
-  }, [location])
 
   useEffect(() => {
     dispatch(Actions.events.getEventsAsync.request())
   }, [dispatch])
 
+  const selectedDay = date ? moment(date) : days[6]
+
   const addTask = useCallback(() => {
-    console.log('addTask', selectedDay)
+    alert(`Add task: ${selectedDay}`)
   }, [selectedDay])
 
   return (

@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { Event, EventType } from 'types'
+import { Event } from 'types'
 
 import Database from './database'
 
@@ -8,31 +8,45 @@ const today = moment()
 
 const createData = (): Array<Event> => [
   new Event({
-    date: yesterday.toDate(),
+    date: today.toDate(),
     quantity: 1,
-    price: 1,
-    eventType: EventType.Expense,
-    isWorkHour: true,
-    isApproved: true,
-    isRejected: false,
+    price: null,
+    eventType: 'Working',
+    isHoursEventType: true,
     tasksCount: 1,
-    firstTaskStart: yesterday
-      .set('hours', 11)
-      .set('minutes', 15)
-      .toDate(),
-    lastTaskEnd: yesterday.add(1, 'h').toDate(),
+    firstTaskStart: yesterday.set('hours', 6).toDate(),
+    lastTaskEnd: yesterday.set('hours', 18).toDate(),
   }),
   new Event({
     date: today.toDate(),
     quantity: 1,
-    price: 1,
-    eventType: EventType.Expense,
-    isWorkHour: true,
-    isApproved: true,
-    isRejected: false,
+    price: 1.2,
+    eventType: 'Fuel',
+    isExpenseType: true,
     tasksCount: 1,
-    firstTaskStart: today.subtract(1, 'h').toDate(),
-    lastTaskEnd: today.add(1, 'h').toDate(),
+    firstTaskStart: today.set('hours', 6).toDate(),
+    lastTaskEnd: today.set('hours', 18).toDate(),
+  }),
+  new Event({
+    date: today.toDate(),
+    quantity: 2.2,
+    price: null,
+    eventType: 'Overtime',
+    isAdditionalHoursEventType: true,
+    isWorkHour: true,
+    tasksCount: 1,
+    firstTaskStart: today.set('hours', 6).toDate(),
+    lastTaskEnd: today.set('hours', 18).toDate(),
+  }),
+  new Event({
+    date: yesterday.toDate(),
+    quantity: 4,
+    price: null,
+    eventType: 'Visit to the doctor',
+    isAdditionalHoursEventType: true,
+    tasksCount: 2,
+    firstTaskStart: today.set('hours', 6).toDate(),
+    lastTaskEnd: today.set('hours', 18).toDate(),
   }),
 ]
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, useTheme } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/styles'
 
 import Theme from 'theme'
 import { Timesheet } from 'containers'
@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
 }))
 
 const Preview: React.FC = () => {
-  const theme = useTheme()
-  const classes = useStyles(theme)
+  const classes = useStyles()
   return (
     <div className={classes.wrapper}>
       <div className={classes.content}>

@@ -1,26 +1,34 @@
 import React from 'react'
-import { makeStyles, useTheme } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/styles'
+import { Moment } from 'moment'
 
 import Theme from 'theme'
-import { Moment } from 'moment'
+import { EventsSummary } from 'components'
 
 const useStyles = makeStyles((theme: typeof Theme) => ({
   wrapper: {
     padding: '20px',
+  },
+  top: {
     display: 'flex',
     justifyContent: 'space-between',
   },
   weekday: {
     fontWeight: 'bold',
+    fontSize: theme.fontSize2,
+  },
+  date: {
+    fontSize: theme.fontSize2,
   },
   button: {
     borderWidth: 0,
     textTransform: 'uppercase',
     fontWeight: 'bold',
     color: theme.colors.orange,
-    fontSize: theme.fontSize1,
+    fontSize: theme.fontSize2,
     padding: '5px',
     borderRadius: '3px',
+
     '&:hover': {
       backgroundColor: theme.colors.orange,
       color: theme.colors.white,
@@ -30,17 +38,19 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
 }))
 
 const Body: React.FC<{ selectedDay: Moment }> = ({ selectedDay }) => {
-  const theme = useTheme()
-  const classes = useStyles(theme)
+  const classes = useStyles()
   return (
     <div className={classes.wrapper}>
-      <div>
-        <span className={classes.weekday}>{selectedDay.format('dddd')}</span>
-        <span> {selectedDay.format('DD.MM.YYYY')}</span>
+      <div className={classes.top}>
+        <div className={classes.date}>
+          <span className={classes.weekday}>{selectedDay.format('dddd')}</span>
+          <span> {selectedDay.format('DD.MM.YYYY')}</span>
+        </div>
+        <div>
+          <button className={classes.button}>Go to timesheet</button>
+        </div>
       </div>
-      <div>
-        <button className={classes.button}>Go to timesheet</button>
-      </div>
+      <EventsSummary selectedDay={selectedDay} />
     </div>
   )
 }

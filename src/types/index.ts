@@ -1,27 +1,33 @@
+import uuid from 'uuid'
+
 export enum EventType {
-  Expense = 'expense',
-  Hours = 'hours',
-  AdditionalHours = 'additionalHours',
+  expenseType = 'expenseType',
+  hoursEventType = 'hoursEventType',
+  additionalHoursEventType = 'additionalHoursEventType',
 }
 
 interface EventParams {
   date: Date
   quantity: number
-  price: number
-  eventType: EventType
+  price: number | null
+  eventType: string
+  isExpenseType?: boolean
+  isHoursEventType?: boolean
+  isAdditionalHoursEventType?: boolean
   isWorkHour?: boolean
   isApproved?: boolean
   isRejected?: boolean
-  tasksCount: number
+  tasksCount?: number
   firstTaskStart: Date
   lastTaskEnd: Date
 }
 
 export class Event {
+  id: string
   date: Date
   quantity: number
-  price: number
-  eventType: EventType
+  price: number | null
+  eventType: string
   isExpenseType: boolean
   isHoursEventType: boolean
   isAdditionalHoursEventType: boolean
@@ -36,20 +42,24 @@ export class Event {
     quantity,
     price,
     eventType,
+    isExpenseType = false,
+    isHoursEventType = false,
+    isAdditionalHoursEventType = false,
     isWorkHour = false,
     isApproved = false,
     isRejected = false,
-    tasksCount,
+    tasksCount = 0,
     firstTaskStart,
     lastTaskEnd,
   }: EventParams) {
+    this.id = uuid()
     this.date = date || new Date()
     this.quantity = quantity
     this.price = price
     this.eventType = eventType
-    this.isExpenseType = eventType === EventType.Expense
-    this.isHoursEventType = eventType === EventType.Hours
-    this.isAdditionalHoursEventType = eventType === EventType.AdditionalHours
+    this.isExpenseType = isExpenseType
+    this.isHoursEventType = isHoursEventType
+    this.isAdditionalHoursEventType = isAdditionalHoursEventType
     this.isWorkHour = isWorkHour
     this.isApproved = isApproved
     this.isRejected = isRejected

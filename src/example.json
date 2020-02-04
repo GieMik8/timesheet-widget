@@ -1,0 +1,62 @@
+[
+  {
+    "date": "2020-02-01",
+    "quantity": 1,
+    "price": null,
+    "eventType": "Working",
+    "isExpenseType": false,
+    "isHoursEventType": true,
+    "isAdditionalHoursEventType": false,
+    "isWorkHour": false,
+    "isApproved": false,
+    "isRejected": false,
+    "tasksCount": 1,
+    "firstTaskStart": "2020-02-01T06:00",
+    "lastTaskEnd": "2020-02-01T18:00"
+  },
+  {
+    "date": "2020-02-01",
+    "quantity": 1,
+    "price": 1.2,
+    "eventType": "Fuel",
+    "isExpenseType": true,
+    "isHoursEventType": false,
+    "isAdditionalHoursEventType": false,
+    "isWorkHour": false,
+    "isApproved": false,
+    "isRejected": false,
+    "tasksCount": 1,
+    "firstTaskStart": "2020-02-01T06:00",
+    "lastTaskEnd": "2020-02-01T18:00"
+  },
+  {
+    "date": "2020-02-01",
+    "quantity": 2.2,
+    "price": null,
+    "eventType": "Overtime",
+    "isExpenseType": false,
+    "isHoursEventType": false,
+    "isAdditionalHoursEventType": true,
+    "isWorkHour": true,
+    "isApproved": false,
+    "isRejected": false,
+    "tasksCount": 1,
+    "firstTaskStart": "2020-02-01T06:00",
+    "lastTaskEnd": "2020-02-01T18:00"
+  },
+  {
+    "date": "2020-02-03",
+    "quantity": 4,
+    "price": null,
+    "eventType": "Visit to the doctor",
+    "isExpenseType": false,
+    "isHoursEventType": false,
+    "isAdditionalHoursEventType": true,
+    "isWorkHour": false,
+    "isApproved": false,
+    "isRejected": false,
+    "tasksCount": 2,
+    "firstTaskStart": "2020-02-03T06:00",
+    "lastTaskEnd": "2020-02-03T18:00"
+  }
+]
