@@ -6,6 +6,12 @@ export enum EventType {
   additionalHoursEventType = 'additionalHoursEventType',
 }
 
+export enum DayEventsSummaryStatus {
+  ok = 'OK',
+  wrong = 'WRONG',
+  neutral = 'NEUTRAL',
+}
+
 interface EventParams {
   date: Date
   quantity: number
@@ -18,8 +24,8 @@ interface EventParams {
   isApproved?: boolean
   isRejected?: boolean
   tasksCount?: number
-  firstTaskStart: Date
-  lastTaskEnd: Date
+  firstTaskStart?: Date | null
+  lastTaskEnd?: Date | null
 }
 
 export class Event {
@@ -35,8 +41,8 @@ export class Event {
   isApproved: boolean
   isRejected: boolean
   tasksCount: number
-  firstTaskStart: Date
-  lastTaskEnd: Date
+  firstTaskStart: Date | null
+  lastTaskEnd: Date | null
   constructor({
     date,
     quantity,
@@ -48,9 +54,9 @@ export class Event {
     isWorkHour = false,
     isApproved = false,
     isRejected = false,
-    tasksCount = 0,
-    firstTaskStart,
-    lastTaskEnd,
+    tasksCount = 1,
+    firstTaskStart = null,
+    lastTaskEnd = null,
   }: EventParams) {
     this.id = uuid()
     this.date = date || new Date()
@@ -68,3 +74,5 @@ export class Event {
     this.lastTaskEnd = lastTaskEnd
   }
 }
+
+export const STATE_DATE_FORMAT = 'DD-MM-YYYY'

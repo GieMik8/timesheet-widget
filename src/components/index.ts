@@ -1,3 +1,5 @@
 export { default as Icon } from './Icon'
 export { default as DateCard } from './DateCard'
-export { default as EventsSummary } from './EventsSummary'
+export { default as AdditionalHoursEventsList } from './AdditionalHoursEventsList'
+export { default as ExpenseEventsList } from './ExpenseEventsList'
+export { default as HoursEventsList } from './HoursEventsList'

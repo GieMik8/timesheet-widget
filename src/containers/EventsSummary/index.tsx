@@ -5,7 +5,8 @@ import { Moment } from 'moment'
 import { useSelector } from 'react-redux'
 
 import Theme from 'theme'
-import { EventType } from 'types'
+import { EventType, STATE_DATE_FORMAT } from 'types'
+import { ExpenseEventsList, AdditionalHoursEventsList, HoursEventsList } from 'components'
 
 const useStyles = makeStyles((theme: typeof Theme) => ({
   wrapper: {},
@@ -18,18 +19,19 @@ const EventsSummary: React.FC<{ selectedDay: Moment }> = ({ selectedDay }) => {
     eventsById,
   }: { events?: Map<string, any>; eventsById: Array<Event> } = useSelector((store: any) => ({
     eventsById: store.entities.get('events'),
-    events: store.events.getIn(['eventsByDate', selectedDay.format('DD-MM-YYYY')]),
+    events: store.events.getIn(['eventsByDate', selectedDay.format(STATE_DATE_FORMAT)]),
   }))
-  console.log({ selectedDay, events, eventsById })
   if (!events) {
-    return null
+    return <span>No Events</span>
   }
-  console.log(events.get(EventType.additionalHoursEventType))
-  console.log(events.get(EventType.expenseType))
-  console.log(events.get(EventType.hoursEventType))
+  const additionalHoursTypeEvents = events.get(EventType.additionalHoursEventType)
+  const expenseTypeEvents = events.get(EventType.expenseType)
+  const hoursTypeEvents = events.get(EventType.hoursEventType)
   return (
     <div className={classes.wrapper}>
-      <p>EventsSummary</p>
+      {additionalHoursTypeEvents && <AdditionalHoursEventsList />}
+      {expenseTypeEvents && <ExpenseEventsList />}
+      {hoursTypeEvents && <HoursEventsList />}
     </div>
   )
 }

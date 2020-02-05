@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react'
-import { Moment } from 'moment'
+import moment, { Moment } from 'moment'
 import { makeStyles } from '@material-ui/styles'
 
 import Theme from 'theme'
+import { DayEventsSummaryStatus } from 'types'
 
 type Props = {
   date: Moment
@@ -10,6 +11,8 @@ type Props = {
   isSelected?: boolean
   isCurrentDay?: boolean
   isWeekend?: boolean
+  workHours?: number
+  status?: DayEventsSummaryStatus | null
 }
 
 const useStyles = makeStyles((theme: typeof Theme) => ({
@@ -54,8 +57,38 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
       backgroundColor: theme.colors.orange,
       color: theme.colors.white,
     },
+
+    '.selected-day.weekend &': {
+      borderColor: theme.colors.gray2,
+      backgroundColor: theme.colors.gray2,
+    },
   },
-  footer: {},
+  footer: {
+    fontSize: theme.fontSize3,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  dot: {
+    display: 'block',
+    width: '4px',
+    height: '4px',
+    borderRadius: '2px',
+    backgroundColor: 'transparent',
+    marginTop: '3px',
+
+    '.status-ok &': {
+      backgroundColor: theme.colors.green,
+    },
+
+    '.status-wrong &': {
+      backgroundColor: theme.colors.red,
+    },
+
+    '.status-neutral &': {
+      backgroundColor: theme.colors.gray2,
+    },
+  },
 }))
 
 const DateCard: React.FC<Props> = ({
@@ -64,6 +97,8 @@ const DateCard: React.FC<Props> = ({
   isSelected = false,
   isCurrentDay = false,
   isWeekend = false,
+  workHours = 0,
+  status = null,
 }) => {
   const classes = useStyles()
   const onDateClick = useCallback(() => {
@@ -86,11 +121,27 @@ const DateCard: React.FC<Props> = ({
     wrapperClasses.push('weekend')
   }
 
+  if (status) {
+    switch (status) {
+      case DayEventsSummaryStatus.ok:
+        wrapperClasses.push('status-ok')
+        break
+      case DayEventsSummaryStatus.wrong:
+        wrapperClasses.push('status-wrong')
+        break
+      default:
+        wrapperClasses.push('status-neutral')
+    }
+  }
+
   return (
     <div onClick={onDateClick} className={wrapperClasses.join(' ')}>
       <span className={classes.header}>{date.format('ddd')}</span>
       <span className={classes.body}>{date.format('D')}</span>
-      <span className={classes.footer}>-</span>
+      <span className={classes.footer}>
+        {workHours ? moment.utc(workHours * 1000).format('HH:mm') : '-'}
+        <span className={classes.dot} />
+      </span>
     </div>
   )
 }

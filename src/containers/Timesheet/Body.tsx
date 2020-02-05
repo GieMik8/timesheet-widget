@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import { Moment } from 'moment'
 
 import Theme from 'theme'
-import { EventsSummary } from 'components'
+import { EventsSummary } from 'containers'
 
 const useStyles = makeStyles((theme: typeof Theme) => ({
   wrapper: {
