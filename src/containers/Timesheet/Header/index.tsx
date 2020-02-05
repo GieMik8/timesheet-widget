@@ -1,36 +1,13 @@
 import React, { useCallback } from 'react'
 import moment, { Moment } from 'moment'
 import { Map } from 'immutable'
-import { makeStyles } from '@material-ui/styles'
 import queryString from 'query-string'
 
-import Theme from 'theme'
 import { Icon, DateCard } from 'components'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { STATE_DATE_FORMAT, DayEventsSummaryStatus } from 'types'
-
-const useStyles = makeStyles((theme: typeof Theme) => ({
-  wrapper: {
-    // padding: '20px',
-  },
-  top: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '20px 20px 10px 20px',
-  },
-  body: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '0 10px',
-    marginBottom: '10px',
-  },
-  currentDay: {
-    fontWeight: 'bold',
-    fontSize: theme.fontSize1,
-  },
-}))
+import useStyles from './style'
 
 type Props = {
   days: Array<Moment>

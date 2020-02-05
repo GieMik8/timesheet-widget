@@ -2,39 +2,19 @@ import React, { useState, useEffect, useCallback } from 'react'
 import moment, { Moment } from 'moment'
 import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
-import { makeStyles, useTheme } from '@material-ui/styles'
 import { getLast7Days } from 'utils'
 import { useDispatch } from 'react-redux'
 
-import Theme from 'theme'
 import Actions from 'store/root-action'
 import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
-
-const useStyles = makeStyles((theme: typeof Theme) => ({
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-  },
-  header: {
-    borderBottomWidth: '1px',
-    borderBottomStyle: 'solid',
-    borderColor: theme.colors.gray1,
-  },
-  body: {
-    flexGrow: 1,
-    overflow: 'scroll',
-  },
-  footer: {},
-}))
+import useStyles from './style'
 
 const Timesheet: React.FC<{}> = () => {
   const dispatch = useDispatch()
   const location = useLocation()
-  const theme = useTheme()
-  const classes = useStyles(theme)
+  const classes = useStyles()
 
   const { date } = queryString.parse(location.search)
   const [days] = useState(getLast7Days())

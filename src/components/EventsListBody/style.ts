@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
 
     '& td': {
       color: theme.colors.gray,
-      fontSize: theme.fontSize2,
+      fontSize: theme.fontSize3,
       fontWeight: 'bold',
     },
 

@@ -1,11 +1,6 @@
-import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 
 import Theme from 'theme'
-
-type Props = {
-  onClick?: () => void
-}
 
 const useStyles = makeStyles((theme: typeof Theme) => ({
   wrapper: {
@@ -24,15 +19,4 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
   },
 }))
 
-const Footer: React.FC<Props> = ({ onClick }) => {
-  const classes = useStyles()
-  return (
-    <div className={classes.wrapper}>
-      <button className={classes.button} onClick={onClick}>
-        Add Task
-      </button>
-    </div>
-  )
-}
-
-export default Footer
+export default useStyles

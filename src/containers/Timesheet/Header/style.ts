@@ -4,27 +4,23 @@ import Theme from 'theme'
 
 const useStyles = makeStyles((theme: typeof Theme) => ({
   wrapper: {
+    // padding: '20px',
+  },
+  top: {
     display: 'flex',
-    backgroundColor: theme.colors.gray1,
-    padding: '8px 12px',
     justifyContent: 'space-between',
     alignItems: 'center',
+    padding: '20px 20px 6px 20px',
   },
-  left: {
+  body: {
     display: 'flex',
-    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '0 10px',
+    marginBottom: '10px',
   },
-  title: {
-    paddingLeft: '5px',
-    color: theme.colors.gray,
+  currentDay: {
     fontWeight: 'bold',
-    fontSize: theme.fontSize2,
-  },
-  right: {},
-  subtitle: {
-    fontSize: theme.fontSize2,
-    fontWeight: 'bold',
-    color: theme.colors.gray3,
+    fontSize: theme.fontSize1,
   },
 }))
 

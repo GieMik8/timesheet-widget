@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '10px',
+    padding: '8px',
     transition: '.2s',
 
     '&:hover': {
@@ -22,12 +22,12 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
   },
   header: {
     fontSize: theme.fontSize2,
-    marginBottom: '10px',
+    marginBottom: '5px',
   },
   body: {
     fontSize: theme.fontSize2,
     fontWeight: 'bold',
-    marginBottom: '10px',
+    marginBottom: 'px',
     borderWidth: '1px',
     borderColor: 'transparent',
     borderStyle: 'solid',

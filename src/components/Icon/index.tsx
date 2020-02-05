@@ -1,29 +1,11 @@
 import React from 'react'
 
-import Theme from 'theme'
-import { makeStyles } from '@material-ui/styles'
+import useStyles from './style'
 
 type Props = {
   name: string
   onClick?: () => void
 }
-
-const useStyles = makeStyles((theme: typeof Theme) => ({
-  icon: {
-    color: theme.iconColor,
-    fontSize: theme.iconSize,
-    transition: '.1s',
-  },
-  clickable: {
-    padding: '2px',
-    borderRadius: '3px',
-
-    '&:hover': {
-      cursor: 'pointer',
-      backgroundColor: theme.colors.gray1,
-    },
-  },
-}))
 
 const Icon: React.FC<Props> = ({ name, onClick }) => {
   const classes = useStyles()

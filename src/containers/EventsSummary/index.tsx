@@ -1,26 +1,12 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
 import { Map } from 'immutable'
 import { Moment } from 'moment'
 import { useSelector } from 'react-redux'
 
-import Theme from 'theme'
 import { EventType, STATE_DATE_FORMAT, EventsByIdMap } from 'types'
 import { ExpenseEventsList, AdditionalHoursEventsList, HoursEventsList } from 'components'
 
-const useStyles = makeStyles((theme: typeof Theme) => ({
-  wrapper: {
-    margin: '20px 0',
-  },
-  noEventsTitle: {
-    backgroundColor: theme.colors.gray1,
-    padding: '12px 16px',
-    textAlign: 'center',
-    display: 'block',
-    margin: '20px 0 30px',
-    color: theme.colors.gray,
-  },
-}))
+import useStyles from './style'
 
 const EventsSummary: React.FC<{ selectedDay: Moment }> = ({ selectedDay }) => {
   const classes = useStyles()
