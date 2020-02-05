@@ -27,12 +27,17 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
   body: {
     fontSize: theme.fontSize2,
     fontWeight: 'bold',
-    marginBottom: 'px',
+    marginBottom: '5px',
     borderWidth: '1px',
     borderColor: 'transparent',
     borderStyle: 'solid',
     borderRadius: '3px',
     padding: '4px',
+    width: '16px',
+    height: '16px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     transition: '.2s',
 
     '.current-day &': {
