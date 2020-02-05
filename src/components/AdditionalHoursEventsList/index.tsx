@@ -1,19 +1,20 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
+import toJS from 'with-immutable-props-to-js'
 
-import Theme from 'theme'
+import { Event } from 'types'
+import { EventsListHeader, EventsListBody } from 'components'
+import moment from 'moment'
 
-const useStyles = makeStyles((theme: typeof Theme) => ({
-  wrapper: {},
-}))
-
-const AdditionalHoursEventsList: React.FC<{}> = () => {
-  const classes = useStyles()
+const AdditionalHoursEventsList: React.FC<{ events: Array<Event> }> = ({ events }) => {
   return (
-    <div className={classes.wrapper}>
-      <span>Additional Hours</span>
+    <div>
+      <EventsListHeader title="Additional Hours" icon="access_time" />
+      <EventsListBody
+        header={['Type', 'Amount']}
+        rows={events.map(event => [event.eventType, moment.utc(event.quantity * 1000).format('H')])}
+      />
     </div>
   )
 }
 
-export default AdditionalHoursEventsList
+export default toJS(AdditionalHoursEventsList)

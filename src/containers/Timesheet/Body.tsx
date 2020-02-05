@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
   top: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   weekday: {
     fontWeight: 'bold',
@@ -47,7 +48,12 @@ const Body: React.FC<{ selectedDay: Moment }> = ({ selectedDay }) => {
           <span> {selectedDay.format('DD.MM.YYYY')}</span>
         </div>
         <div>
-          <button className={classes.button}>Go to timesheet</button>
+          <button
+            onClick={(): void => alert(`Go to timesheet: ${selectedDay.format('YYYY.MM.DD')}`)}
+            className={classes.button}
+          >
+            Go to timesheet
+          </button>
         </div>
       </div>
       <EventsSummary selectedDay={selectedDay} />

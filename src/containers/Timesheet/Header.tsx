@@ -50,7 +50,7 @@ const Header: React.FC<Props> = ({ days, currentDay, selectedDay }) => {
     () =>
       history.replace(
         `${history.location.pathname}?${queryString.stringify({
-          date: currentDay.format('YYYY-MM-DD'),
+          date: currentDay.format(STATE_DATE_FORMAT),
         })}`,
       ),
     [history, currentDay],

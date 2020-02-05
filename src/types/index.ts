@@ -75,4 +75,8 @@ export class Event {
   }
 }
 
-export const STATE_DATE_FORMAT = 'DD-MM-YYYY'
+export const STATE_DATE_FORMAT = 'YYYY-MM-DD'
+
+export interface EventsByIdMap {
+  [key: string]: Event
+}

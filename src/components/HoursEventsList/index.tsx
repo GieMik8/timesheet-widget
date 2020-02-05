@@ -1,19 +1,29 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
+import toJS from 'with-immutable-props-to-js'
+import moment from 'moment'
 
-import Theme from 'theme'
+import { Event } from 'types'
+import EventsListHeader from 'components/EventsListHeader'
+import { EventsListBody } from 'components'
+import { getTasksInterval } from 'utils'
 
-const useStyles = makeStyles((theme: typeof Theme) => ({
-  wrapper: {},
-}))
-
-const HoursEventsList: React.FC<{}> = () => {
-  const classes = useStyles()
+const HoursEventsList: React.FC<{ events: Array<Event> }> = ({ events }) => {
+  const { firstTaskStart, lastTaskEnd } = getTasksInterval(events)
+  const subtitle = `(${moment(firstTaskStart!).format('HH:mm')}-${moment(lastTaskEnd!).format(
+    'HH:mm',
+  )})`
   return (
-    <div className={classes.wrapper}>
-      <span>Hours</span>
+    <div>
+      <EventsListHeader title="Hours" subtitle={subtitle} icon="timer" />
+      <EventsListBody
+        header={['Type', 'Duration']}
+        rows={events.map(event => [
+          event.eventType,
+          moment.utc(event.quantity * 1000).format('HH:mm'),
+        ])}
+      />
     </div>
   )
 }
 
-export default HoursEventsList
+export default toJS(HoursEventsList)

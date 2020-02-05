@@ -30,7 +30,8 @@
     "typed-immutable-record": "0.0.6",
     "typesafe-actions": "^5.1.0",
     "url-join": "^4.0.1",
-    "uuid": "^3.4.0"
+    "uuid": "^3.4.0",
+    "with-immutable-props-to-js": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

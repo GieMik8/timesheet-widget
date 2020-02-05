@@ -9,6 +9,18 @@ const today = moment()
 const createData = (): Array<Event> => [
   new Event({
     date: today.toDate(),
+    quantity: 1 * 3600,
+    price: null,
+    eventType: 'Working 2',
+    isHoursEventType: true,
+    isWorkHour: true,
+    tasksCount: 2,
+    isApproved: true,
+    firstTaskStart: yesterday.set('hours', 17).toDate(),
+    lastTaskEnd: yesterday.set('hours', 18).toDate(),
+  }),
+  new Event({
+    date: today.toDate(),
     quantity: 8 * 3600,
     price: null,
     eventType: 'Working',

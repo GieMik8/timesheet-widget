@@ -15,3 +15,23 @@ export function getEventType(event: Event): EventType {
   }
   return EventType.hoursEventType
 }
+
+export function getTasksInterval(
+  events: Event[],
+): { firstTaskStart: number | null; lastTaskEnd: number | null } {
+  let firstTaskStart = null
+  let lastTaskEnd = null
+  for (const event of events) {
+    if (event.firstTaskStart) {
+      if (!firstTaskStart || event.firstTaskStart.getTime() < firstTaskStart) {
+        firstTaskStart = event.firstTaskStart.getTime()
+      }
+    }
+    if (event.lastTaskEnd) {
+      if (!lastTaskEnd || event.lastTaskEnd.getTime() > lastTaskEnd) {
+        lastTaskEnd = event.lastTaskEnd.getTime()
+      }
+    }
+  }
+  return { firstTaskStart, lastTaskEnd }
+}
