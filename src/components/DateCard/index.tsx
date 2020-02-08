@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import moment, { Moment } from 'moment'
+import clsx from 'clsx'
 
 import { DayEventsSummaryStatus, STATE_DATE_FORMAT } from 'types'
 import useStyles from './style'
@@ -30,35 +31,17 @@ const DateCard: React.FC<Props> = ({
     }
   }, [onClick, date])
 
-  const wrapperClasses = [classes.wrapper]
-
-  if (isCurrentDay) {
-    wrapperClasses.push('current-day')
-  }
-
-  if (isSelected) {
-    wrapperClasses.push('selected-day')
-  }
-
-  if (isWeekend) {
-    wrapperClasses.push('weekend')
-  }
-
-  if (status) {
-    switch (status) {
-      case DayEventsSummaryStatus.ok:
-        wrapperClasses.push('status-ok')
-        break
-      case DayEventsSummaryStatus.wrong:
-        wrapperClasses.push('status-wrong')
-        break
-      default:
-        wrapperClasses.push('status-neutral')
-    }
-  }
+  const wrapperClasses = clsx(classes.wrapper, {
+    weekend: isWeekend,
+    'current-day': isCurrentDay,
+    'selected-day': isSelected,
+    'status-ok': status && status === DayEventsSummaryStatus.ok,
+    'status-wrong': status && status === DayEventsSummaryStatus.wrong,
+    'status-neutral': status && status === DayEventsSummaryStatus.neutral,
+  })
 
   return (
-    <div onClick={onDateClick} className={wrapperClasses.join(' ')}>
+    <div onClick={onDateClick} className={wrapperClasses}>
       <span className={classes.header}>{date.format('ddd')}</span>
       <span className={classes.body}>{date.format('D')}</span>
       <span className={classes.footer}>

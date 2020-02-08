@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import toJS from 'with-immutable-props-to-js'
 import moment from 'moment'
 
@@ -9,9 +9,9 @@ import { getTasksInterval } from 'utils'
 
 const HoursEventsList: React.FC<{ events: Array<Event> }> = ({ events }) => {
   const { firstTaskStart, lastTaskEnd } = getTasksInterval(events)
-  const subtitle = `(${moment(firstTaskStart!).format('HH:mm')}-${moment(lastTaskEnd!).format(
-    'HH:mm',
-  )})`
+  const subtitle = useMemo(() => {
+    return `(${moment(firstTaskStart!).format('HH:mm')}-${moment(lastTaskEnd!).format('HH:mm')})`
+  }, [firstTaskStart, lastTaskEnd])
   return (
     <div>
       <EventsListHeader title="Hours" subtitle={subtitle} icon="timer" />

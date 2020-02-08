@@ -44,6 +44,10 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
       borderColor: theme.colors.orange,
     },
 
+    '.current-day.weekend &': {
+      borderColor: theme.colors.gray2,
+    },
+
     '.selected-day &': {
       borderColor: theme.colors.orange,
       backgroundColor: theme.colors.orange,
@@ -51,8 +55,8 @@ const useStyles = makeStyles((theme: typeof Theme) => ({
     },
 
     '.selected-day.weekend &': {
-      borderColor: theme.colors.gray2,
       backgroundColor: theme.colors.gray2,
+      borderColor: theme.colors.gray2,
     },
   },
   footer: {
